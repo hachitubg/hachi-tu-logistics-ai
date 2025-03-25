@@ -1,6 +1,6 @@
 # Hachi Tu Logistics AI Assistant
 
-Ứng dụng chatbot AI chuyên về Logistics và Chuỗi cung ứng, được xây dựng bằng Python và Google Generative AI.
+Ứng dụng chatbot AI chuyên gia về Logistics và Chuỗi cung ứng, sử dụng Google Gemini AI.
 
 ## Tính năng
 
@@ -19,7 +19,7 @@
 
 1. Clone repository:
 ```bash
-git clone https://github.com/yourusername/hachi-tu-logistics-ai.git
+git clone https://github.com/hachitubg/hachi-tu-logistics-ai.git
 cd hachi-tu-logistics-ai
 ```
 
@@ -30,12 +30,12 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 ```
 
-3. Cài đặt các thư viện cần thiết:
+3. Cài đặt dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Tạo file `.env` và thêm API key của Google:
+4. Tạo file `.env` và thêm API key:
 ```
 GOOGLE_API_KEY=your_api_key_here
 ```
@@ -46,15 +46,22 @@ GOOGLE_API_KEY=your_api_key_here
 python app.py
 ```
 
-Truy cập http://localhost:5000 để sử dụng ứng dụng.
+Ứng dụng sẽ chạy tại `http://localhost:5000`
+
+## Deployment trên Render.com
+
+1. Push code lên GitHub repository
+2. Tạo Web Service mới trên Render.com
+3. Connect với GitHub repository
+4. Thêm biến môi trường `GOOGLE_API_KEY` trong cài đặt của service
+5. Deploy!
 
 ## Công nghệ sử dụng
 
-- Python
+- Python 3.9
 - Flask
-- Google Generative AI
-- HTML/CSS/JavaScript
-- Markdown-it
+- Google Gemini AI
+- Gunicorn (cho production)
 
 ## License
 
