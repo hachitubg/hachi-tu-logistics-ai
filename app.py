@@ -1,11 +1,20 @@
-from flask import Flask, render_template, request, jsonify
-from google import genai
-import json
+from flask import Flask, request, jsonify, render_template
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
-# Khởi tạo Gemini client
-client = genai.Client(api_key="AIzaSyB9jyZloZl9J8y_RHrFLk0cFPdGlWsJqKo")
+# Configure the Gemini API
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+if not GOOGLE_API_KEY:
+    raise ValueError("GOOGLE_API_KEY environment variable is not set")
+
+genai.configure(api_key=GOOGLE_API_KEY)
+model = genai.GenerativeModel('gemini-2.0-flash')
 
 # Định nghĩa ngữ cảnh cho AI
 context = """
@@ -84,10 +93,7 @@ def chat():
         prompt = f"{context}\n\nLịch sử trò chuyện:\n{history_text}"
         
         # Gửi yêu cầu đến Gemini
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt
-        )
+        response = model.generate_content(prompt)
         
         ai_response = response.text
         
